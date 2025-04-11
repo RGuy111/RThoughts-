@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RThoughts</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background-color: #f9f9f9;
+      color: #222;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .tagline {
+      font-style: italic;
+      color: #777;
+      margin-top: 0.5rem;
+    }
+
+    .entry {
+      margin-bottom: 3rem;
+    }
+
+    .entry h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .entry time {
+      display: block;
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .entry p {
+      line-height: 1.6;
+    }
+
+    .editor {
+      margin-top: 4rem;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      font-family: monospace;
+      font-size: 1rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    .preview {
+      margin-top: 2rem;
+      padding: 1rem;
+      border: 1px dashed #ccc;
+      background: #f0f0f0;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 5rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .btn-copy {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.4rem 0.8rem;
+      background: #222;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RThoughts</h1>
+    <div class="tagline">Social Media without the Social</div>
+  </header>
+
+  <section class="entry">
+    <h2>The Flash is Real</h2>
+    <time datetime="2025-04-11">April 11, 2025</time>
+    <p>
+      What if The Flash wasn’t just fiction? What if he hid himself in stories to protect reality from cosmic collapse? 
+      Reverse-Flash might not just be a villain — he might be hunting the truth across dimensions, trying to break the veil. 
+      This could explain why The Flash keeps evolving across time and media. He's adapting. Hiding. Protecting something.
+    </p>
+  </section>
+
+  <div class="editor">
+    <h2>Write a New Thought</h2>
+    <textarea id="markdown-input" placeholder="Write in markdown..."></textarea>
+    <div class="preview" id="preview"></div>
+    <button class="btn-copy" onclick="copyHTML()">Copy HTML</button>
+  </div>
+
+  <footer>
+    &copy; 2025 RThoughts. Built with silence and caffeine.
+  </footer>
+
+  <script>
+    const input = document.getElementById('markdown-input');
+    const preview = document.getElementById('preview');
+
+    input.addEventListener('input', () => {
+      preview.innerHTML = marked.parse(input.value);
+    });
+
+    function copyHTML() {
+      const temp = document.createElement("textarea");
+      temp.value = preview.innerHTML;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      alert("HTML copied to clipboard! Paste it into your blog above.");
+    }
+  </script>
+</body>
+</html>
